@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vintage Photo Booth</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="booth-container">
+        
+        <section id="screen-welcome" class="screen active">
+            <h1>The Vintage Booth</h1>
+            <p>Capture the moment in timeless monochrome.</p>
+            <button class="btn" onclick="nextScreen('screen-options-1')">Start Session</button>
+        </section>
+
+        <section id="screen-options-1" class="screen">
+            <h2>Customize Your Look</h2>
+            
+            <div class="option-group">
+                <label>Frame Color</label>
+                <div class="color-picker">
+                    <div class="color-swatch selected" style="background: #ffffff; border: 1px solid #ccc;" onclick="selectColor('#ffffff', this)"></div>
+                    <div class="color-swatch" style="background: #000000;" onclick="selectColor('#000000', this)"></div>
+                    <div class="color-swatch" style="background: #f4e4bc;" onclick="selectColor('#f4e4bc', this)"></div>
+                </div>
+            </div>
+        
+            <div class="option-group">
+                <label>Photo Filter</label>
+                <select id="photo-filter" onchange="previewFilter(this.value)">
+                    <option value="bw">Classic B&W</option>
+                    <option value="sepia">Old School Sepia</option>
+                    <option value="pink">Vintage Rose</option>
+                    <option value="warm">Warm Glow</option>
+                    <option value="none">No Filter (Color)</option>
+                </select>
+            </div>
+        
+            <div class="option-group">
+                <label>Frame Pattern</label>
+                <select id="frame-pattern">
+                    <option value="none">Clean (No Pattern)</option>
+                    <option value="dots">Polka Dots</option>
+                    <option value="lines">Pinstripes</option>
+                </select>
+            </div>
+        
+            <button class="btn" onclick="nextScreen('screen-options-2')">Next</button>
+        </section>
+
+        <section id="screen-options-2" class="screen">
+            <h2>Select Format</h2>
+            
+            <div class="option-group">
+                <label>Layout Style</label>
+                <div class="layout-options">
+                    <button class="layout-btn selected" onclick="selectLayout('strip', this)">Photo Strip (Vertical)</button>
+                    <button class="layout-btn" onclick="selectLayout('card', this)">Card (2x2 Grid)</button>
+                    <button class="layout-btn" onclick="selectLayout('solo', this)">Solo (Single)</button>
+                </div>
+            </div>
+
+            <div class="option-group">
+                <label>Number of Photos</label>
+                <select id="photo-count">
+                    <option value="3">3 Photos</option>
+                    <option value="4">4 Photos</option>
+                    <option value="1">1 Photo (Solo only)</option>
+                </select>
+            </div>
+
+            <button class="btn" onclick="startCamera()">Enter Booth</button>
+        </section>
+
+        <section id="screen-camera" class="screen">
+            <h2 id="camera-status">Get Ready...</h2>
+            <div class="camera-wrapper">
+                <video id="video" autoplay playsinline></video>
+                <div id="flash"></div>
+                <div id="countdown"></div>
+            </div>
+            <canvas id="temp-canvas" style="display:none;"></canvas>
+        </section>
+
+        <section id="screen-result" class="screen">
+            <h2>Your Keepsake</h2>
+            <div id="result-container">
+                </div>
+            <div class="button-group">
+                <a id="download-link" class="btn">Download Photo</a>
+                <button class="btn secondary" onclick="location.reload()">New Session</button>
+            </div>
+        </section>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

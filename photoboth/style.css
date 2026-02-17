@@ -1,0 +1,289 @@
+/* Vintage Theme Setup */
+:root {
+    --bg-color: #1a1a1a;
+    --paper-color: #f8f5e6; /* Creamy vintage paper */
+    --accent-color: #2c2c2c;
+    --text-color: #1a1a1a;
+    --font-cursive: 'Great Vibes', cursive;
+    --font-body: 'Playfair Display', serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: var(--font-body);
+}
+
+/* The Booth Container */
+.booth-container {
+    background-color: var(--paper-color);
+    width: 90%;
+    max-width: 500px;
+    padding: 2rem;
+    border: 10px double var(--accent-color);
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+    text-align: center;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Typography */
+h1 {
+    font-family: var(--font-cursive);
+    font-size: 4rem;
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+}
+
+h2 {
+    font-family: var(--font-cursive);
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+p, label {
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+/* Screen Management */
+.screen {
+    display: none;
+    animation: fadeIn 0.8s ease;
+}
+
+.screen.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* UI Elements */
+.btn {
+    background: transparent;
+    border: 2px solid var(--text-color);
+    color: var(--text-color);
+    padding: 10px 30px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    font-family: var(--font-body);
+    margin-top: 20px;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn:hover {
+    background: var(--text-color);
+    color: var(--paper-color);
+}
+
+.btn.secondary {
+    border-color: #666;
+    color: #666;
+    font-size: 1rem;
+    margin-left: 10px;
+}
+
+/* Option Groups */
+.option-group {
+    margin: 20px 0;
+    text-align: left;
+}
+
+.option-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    font-family: var(--font-body);
+    border: 1px solid var(--text-color);
+    background: transparent;
+}
+
+/* Color Picker */
+.color-picker {
+    display: flex;
+    gap: 10px;
+}
+
+.color-swatch {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.color-swatch.selected {
+    border-color: #d4af37; /* Gold highlight */
+    transform: scale(1.1);
+}
+
+/* Layout Buttons */
+.layout-options {
+    display: flex;
+    gap: 10px;
+}
+
+.layout-btn {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background: transparent;
+    cursor: pointer;
+    font-family: var(--font-body);
+}
+
+.layout-btn.selected {
+    background: var(--text-color);
+    color: var(--paper-color);
+}
+
+/* Camera Video */
+.camera-wrapper {
+    position: relative;
+    width: 100%;
+    height: 300px; /* Reduced height to fit standard strip ratio better */
+    background: #000;
+    overflow: hidden;
+    border: 5px solid var(--text-color);
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(1.2); /* THE VINTAGE LOOK */
+}
+
+/* Flash Effect */
+#flash {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: white;
+    opacity: 0;
+    pointer-events: none;
+}
+
+@keyframes flashAnim {
+    0% { opacity: 0.8; }
+    100% { opacity: 0; }
+}
+
+/* Countdown */
+#countdown {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5rem;
+    color: white;
+    font-family: var(--font-body);
+    text-shadow: 0 0 10px black;
+}
+
+/* Result Image */
+#result-container img {
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    border: 1px solid #ccc;
+}
+
+/* --- Filter Classes for Live Preview --- */
+
+/* Classic B&W */
+.filter-bw {
+    filter: grayscale(100%) contrast(1.2);
+}
+
+/* Old School Sepia */
+.filter-sepia {
+    filter: sepia(100%) contrast(1.1);
+}
+
+/* Vintage Rose (Pinkish) */
+.filter-pink {
+    filter: sepia(50%) hue-rotate(315deg) contrast(1.1) brightness(1.1);
+}
+
+/* Warm Glow */
+.filter-warm {
+    filter: sepia(40%) contrast(1.1) brightness(1.1);
+}
+
+/* No Filter */
+.filter-none {
+    filter: none;
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 600px) {
+    
+    /* Make the booth take up more screen space on mobile */
+    .booth-container {
+        width: 95%;
+        padding: 1rem; /* Less padding to save space */
+        border-width: 5px; /* Thinner border */
+        min-height: auto;
+    }
+
+    /* Shrink the huge vintage text */
+    h1 {
+        font-size: 2.5rem; /* Down from 4rem */
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    /* Stack the Color options closer together */
+    .color-picker {
+        justify-content: center;
+    }
+
+    /* Make buttons easier to tap */
+    .btn {
+        width: 100%; /* Full width buttons for thumbs */
+        box-sizing: border-box;
+        padding: 15px;
+        margin-top: 15px;
+    }
+
+    /* Adjust Layout Buttons */
+    .layout-options {
+        flex-direction: column; /* Stack them vertically */
+    }
+
+    .layout-btn {
+        width: 100%;
+        padding: 15px;
+        margin-bottom: 5px;
+    }
+
+    /* Fix Camera Height for Mobile Portrait */
+    .camera-wrapper {
+        height: 250px; /* Slightly smaller to fit on screen */
+    }
+
+    /* Ensure the result image doesn't overflow */
+    #result-container img {
+        max-height: 60vh; /* Don't let it be taller than 60% of screen */
+        width: auto;
+        max-width: 100%;
+    }
+}
